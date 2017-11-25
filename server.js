@@ -1,5 +1,4 @@
 const express = require('express');
-const jsonParser = require('body-parser').json();
 
 const app = express();
 
@@ -11,12 +10,6 @@ app.use((req, res, next) => {
 
 app.get('/tinh/:tenPhepTinh/:soA/:soB', (req, res) => {
     const { tenPhepTinh, soA, soB } = req.params;
-    const pt = new PhepTinh(soA, soB, tenPhepTinh);
-    res.send(pt.getResult() + '');
-});
-
-app.post('/tinh', jsonParser, (req, res) => {
-    const { tenPhepTinh, soA, soB } = req.body;
     const pt = new PhepTinh(soA, soB, tenPhepTinh);
     res.send(pt.getResult() + '');
 });
