@@ -33,11 +33,12 @@ function chiaPromise(a, b) {
 
 // (4 + 5) * 6 / 2
 
-// congPromise(4, 5)
-// .then(tong => nhanPromise(tong, 6))
-// .then(tich => chiaPromise(tich, 2))
-// .then(kq => console.log(kq))
-// .catch(err => console.log(err.message));
+congPromise(4, 5)
+.then(tong => nhanPromise(tong, 6))
+.then(tich => chiaPromise(tich, 2))
+.then(kq => console.log(kq))
+.then(x => console.log(x))
+.catch(err => console.log(err.message));
 
 // function tinhDienTichHinhThang(a, b, h) {
 //     return congPromise(a, b)
