@@ -24,3 +24,22 @@ function chia(a, b, cb) {
         cb(null, body);
     });
 }
+
+// (4 + 5) * 6 / 2
+function tinhDienTichHinhThang(a, b, h, cb) {
+    cong(a, b, (err, tong) => {
+        if (err) return cb(err, null);
+        nhan(tong, h, (err, tich) => {
+            if (err) return cb(err, null);
+            chia(tich, 2, (err, kq) => {
+                if (err) return cb(err, null);
+                cb(null, kq);
+            });
+        });
+    });
+}
+
+tinhDienTichHinhThang(4, 5, 12, (err, result) => {
+    if (err) return console.log(err.message);
+    console.log(result);
+});
