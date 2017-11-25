@@ -1,11 +1,16 @@
-const axios = require('axios');
+const request = require('request');
 
 const URL = 'http://api.openweathermap.org/data/2.5/weather?appid=01cc37655736835b0b75f2b395737694&units=metric&q=';
 
-function getWeather(name) {
-    axios.get(URL + name)
-    .then(res => console.log(res.data.main.temp));
+function getWeather(name, cb) {
+    request.get(URL + name, (err, response, body) => {
+        if (err) return cb(err, null);
+        const resObject = JSON.parse(body);
+        cb(null, resObject.main.temp);
+    });
 }
 
-console.log('Nhiet do: ' + getWeather('Berlin')); // Nhiet do la: 5
-console.log('Temp: ' + getWeather('Berlin'));
+getWeather('Berlin', (err, temp) => {
+    if (err) return console.log(err.message);
+    console.log(temp);
+});
